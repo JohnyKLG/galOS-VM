@@ -1,0 +1,27 @@
+function load(ms){return new Promise(resolve => setTimeout(resolve, ms));}
+async function boot(){
+    win = nw.Window.get();
+    win.enterFullscreen();
+    win.setAlwaysOnTop();
+    win.setVisibleOnAllWorkspaces();
+    hd = document.head;
+    bd = document.body;
+    pc = "style='color:lime'";
+    pl = "style='color:yellow'";
+    bd.style.background = "#000";
+    bd.style.color = "#fff";
+    bd.style.font ="12px monospace"
+    bd.setAttribute('ondragover','event.preventDefault()');
+    document.documentElement.style.cursor = 'none';
+    bd.innerHTML = "<br>KLG VM BIOS v2.3.1";
+    bd.innerHTML += "<br>github.com/JohnyKLG";
+    await load(1000);
+    bd.innerHTML += "<br><br><br><br><br> Inicializando ROM";
+    for(var i = 0; i < 30; i++){await load(10);bd.innerHTML += ".";}
+    bd.innerHTML += "galOS.sys";
+    var sys = document.createElement('script');
+    sys.src = 'sys.pl';
+    hd.appendChild(sys);
+    await load(2000);
+    galOS('boot');
+}
