@@ -49,7 +49,6 @@ async function gLogin(pw){
     if(pw === user[3]){
         genClear();
         galOS('x64');
-        await load(1000);
         gEfect('desktop');
     }
 }
